@@ -1,4 +1,5 @@
 //Define UI variables
+/*
 const taskInput = document.querySelector("#task");
 const form = document.querySelector("#task-form");
 const list = document.querySelector(".collection");
@@ -105,4 +106,48 @@ function filterTask() {
       task.style.display = "none";
     }
   });
-}
+}*/
+const add = function (e) {
+  if (task.value !== "") {
+    const li = document.createElement("li");
+    li.className = "collection-item";
+    li.innerText = task.value;
+
+    const link = document.createElement("a");
+    link.className = "delete-item secondary-content";
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    li.appendChild(link);
+    ul.appendChild(li);
+  } else {
+    alert("cc");
+  }
+  e.preventDefault();
+};
+
+const deleteitem = function (e) {
+  console.log(e.target.className);
+  if (e.target.classList.contains("fa-remove")) {
+    e.target.parentElement.parentElement.remove();
+    // console.log("dsd");
+    showalert("delte", "dangore");
+  }
+};
+/*
+function filterTask() {
+  //const input = filter.value.toLowerCase();
+  document.querySelectorAll(".collection-item").forEach(function (task) {
+    const item = task.textContent.toLowerCase();
+   // if (item.indexOf(input) != -1) {
+      task.style.display = "block";
+   // } else {
+    //  task.style.display = "none";
+    //}
+});*/
+
+const task = document.querySelector("#task");
+const form = document.querySelector("#task-form");
+const ul = document.querySelector(".collection");
+const container = document.querySelector(".container");
+container.addEventListener("click", deleteitem);
+form.addEventListener("submit", add);
+document.querySelector("#filter").addEventListener("keyup", filter);
